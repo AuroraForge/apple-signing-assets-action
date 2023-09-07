@@ -42,4 +42,4 @@ runs:
         export CERTIFICATE_PATH=${{ inputs.certificate-path }}
         export CERTIFICATE_PASSWORD=${{ inputs.certificate-password }}
         export PROVISIONING_PROFILE_PATH=${{ inputs.provisioning-profile-path }}
-        action.sh
+        ./action.sh
