@@ -1,0 +1,45 @@
+name: 'Apple Signing Assets'
+description: 'Work with apple signing assets. Lock and unlock keychains, import certificates and install provisioning profiles.'
+inputs:
+  action:
+    description: 'What to do. One of create_keychain, delete_keychain, import_certificate, lock_keychain, unlock_keychain, install_provisioning_profile, remove_all_provisioning_profiles.'
+    required: true
+    default: 'unlock-keychain'
+  
+  # Used in: create_keychain, delete_keychain, import_certificate, lock_keychain, unlock_keychain
+  keychain-path:
+    description: 'The path of the keychain to create, delete, unlock or lock. Also used when importing certificates.'
+    required: false
+  
+  # Used in: create_keychain, delete_keychain, import_certificate, lock_keychain, unlock_keychain
+  keychain-password:
+    description: 'The keychain password.'
+    required: false
+
+  # Used in: import_certificate
+  certificate-path:
+    description: 'The path to the certificate p8 file to import.'
+    required: false
+
+  # Used in: import_certificate
+  certificate-password:
+    description: 'The password of the certificate p8 file to import the certificate.'
+    required: false
+  
+  # Used in: import_provisioning_profile
+  provisioning-profile-path:
+    description: 'The path of the provisioning profile to import.'
+    required: false
+
+runs:
+  using: "composite"
+  steps:
+    - shell: bash
+      run: |
+        export ACTION=${{ inputs.action }}
+        export KEYCHAIN_PATH=${{ inputs.keychain-path }}
+        export KEYCHAIN_PASSWORD=${{ inputs.keychain-password }}
+        export CERTIFICATE_PATH=${{ inputs.certificate-path }}
+        export CERTIFICATE_PASSWORD=${{ inputs.certificate-password }}
+        export PROVISIONING_PROFILE_PATH=${{ inputs.provisioning-profile-path }}
+        action.sh
