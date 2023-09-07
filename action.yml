@@ -42,4 +42,4 @@ runs:
         CERTIFICATE_PATH: ${{ inputs.certificate-path }}
         CERTIFICATE_PASSWORD: ${{ inputs.certificate-password }}
         PROVISIONING_PROFILE_PATH: ${{ inputs.provisioning-profile-path }}
-      run: action.sh
+      run: ${{ github.action_path }}/action.sh
