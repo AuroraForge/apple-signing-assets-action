@@ -35,12 +35,11 @@ runs:
   using: "composite"
   steps:
     - shell: bash
-      run: |
-        export ACTION=${{ inputs.action }}
-        export KEYCHAIN_PATH=${{ inputs.keychain-path }}
-        export KEYCHAIN_PASSWORD=${{ inputs.keychain-password }}
-        export CERTIFICATE_PATH=${{ inputs.certificate-path }}
-        export CERTIFICATE_PASSWORD=${{ inputs.certificate-password }}
-        export PROVISIONING_PROFILE_PATH=${{ inputs.provisioning-profile-path }}
-        ls -laR
-        ./action.sh
+      env:
+        ACTION: ${{ inputs.action }}
+        KEYCHAIN_PATH: ${{ inputs.keychain-path }}
+        KEYCHAIN_PASSWORD: ${{ inputs.keychain-password }}
+        CERTIFICATE_PATH: ${{ inputs.certificate-path }}
+        CERTIFICATE_PASSWORD: ${{ inputs.certificate-password }}
+        PROVISIONING_PROFILE_PATH: ${{ inputs.provisioning-profile-path }}
+      run: action.sh
